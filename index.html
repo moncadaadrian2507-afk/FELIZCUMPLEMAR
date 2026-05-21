@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Mar ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #050505, #111827);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .screen {
+      min-height: 100vh;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    p {
+      max-width: 700px;
+      color: #d1d5db;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    button {
+      margin-top: 40px;
+      padding: 18px 35px;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ff4d88, #ff7eb3);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: .3s;
+      box-shadow: 0 10px 30px rgba(255,77,136,.3);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 30px;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 850px;
+    }
+
+    .keys {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+      margin-top: 40px;
+    }
+
+    .key {
+      background: rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 40px 20px;
+      cursor: pointer;
+      transition: .3s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .key:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .key span {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 50px;
+    }
+
+    .card {
+      border-radius: 35px;
+      padding: 35px;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      transition: .3s;
+      box-shadow: 0 20px 40px rgba(0,0,0,.3);
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+    }
+
+    .green {
+      background: linear-gradient(180deg,#22c55e,#14532d);
+    }
+
+    .orange {
+      background: linear-gradient(180deg,#fb923c,#7c2d12);
+    }
+
+    .blue {
+      background: linear-gradient(180deg,#60a5fa,#1e3a8a);
+    }
+
+    input {
+      margin-top: 25px;
+      padding: 18px;
+      width: 300px;
+      border-radius: 18px;
+      border: none;
+      text-align: center;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .fade {
+      animation: fade .8s ease;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<section class="screen active fade" id="intro">
+  <h1>Feliz cumpleaños ❤️</h1>
+
+  <div class="glass">
+    <p>
+      Hace un poco más de un año de conocernos...
+      <br><br>
+      y sin darme cuenta,
+      te convertiste en una de las personas más importantes de mi vida.
+      <br><br>
+      Así que este año preparé algo diferente para ti ✨
+    </p>
+  </div>
+
+  <button onclick="next('password')">
+    Comenzar experiencia ✨
+  </button>
+</section>
+
+<section class="screen fade" id="password">
+  <h1>Código secreto 🔒</h1>
+
+  <div class="glass">
+    <p>
+      Ingresa una fecha importante para nosotros ❤️
+    </p>
+
+    <input type="text" id="code" placeholder="Ej: 12/05/24">
+
+    <button onclick="unlock()">
+      Desbloquear ✨
+    </button>
+  </div>
+</section>
+
+<section class="screen fade" id="letter">
+  <h1>Para ti 💌</h1>
+
+  <div class="glass">
+    <p>
+      Quería regalarte algo que pudiéramos recordar para siempre.
+      <br><br>
+      No solo un regalo.
+      <br><br>
+      Una experiencia.
+    </p>
+  </div>
+
+  <button onclick="next('keys')">
+    Continuar 🔑
+  </button>
+</section>
+
+<section class="screen fade" id="keys">
+  <h1>Escoge una llave 🔑</h1>
+
+  <div class="keys">
+    <div class="key" onclick="next('trips')">
+      <span>🔑</span>
+      <h2>Llave 1</h2>
+    </div>
+
+    <div class="key" onclick="next('trips')">
+      <span>🔑</span>
+      <h2>Llave 2</h2>
+    </div>
+
+    <div class="key" onclick="next('trips')">
+      <span>🔑</span>
+      <h2>Llave 3</h2>
+    </div>
+  </div>
+</section>
+
+<section class="screen fade" id="trips">
+  <h1>Tu regalo 🎁</h1>
+
+  <div class="cards">
+
+    <div class="card green">
+      <div>
+        <h2 style="font-size:2rem; margin-bottom:20px;">Costa Rica 🇨🇷</h2>
+
+        <p style="color:white;">
+          Playa, jungla,
+          sunsets increíbles
+          y nosotros juntos ❤️
+        </p>
+      </div>
+
+      <h3>Juntos ✨</h3>
+    </div>
+
+    <div class="card orange">
+      <div>
+        <h2 style="font-size:2rem; margin-bottom:20px;">Perú 🇵🇪</h2>
+
+        <p style="color:white;">
+          Paisajes increíbles,
+          comida deliciosa
+          y muchísimos recuerdos juntos ❤️
+        </p>
+      </div>
+
+      <h3>Juntos ✨</h3>
+    </div>
+
+    <div class="card blue">
+      <div>
+        <h2 style="font-size:2rem; margin-bottom:20px;">Brasil 🇧🇷</h2>
+
+        <p style="color:white;">
+          Un viaje solo para ti ✨
+          <br><br>
+          Para descansar,
+          disfrutar
+          y vivir algo increíble ❤️
+        </p>
+      </div>
+
+      <h3>Tu aventura ✨</h3>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const starsContainer = document.getElementById('stars');
+
+  for(let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDuration = (2 + Math.random() * 4) + 's';
+    starsContainer.appendChild(star);
+  }
+
+  function next(id) {
+    document.querySelectorAll('.screen').forEach(screen => {
+      screen.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function unlock() {
+    const value = document.getElementById('code').value;
+
+    if(value.length > 0) {
+      next('letter');
+    } else {
+      alert('Ingresa una fecha ❤️');
+    }
+  }
+</script>
+
+</body>
+</html>
